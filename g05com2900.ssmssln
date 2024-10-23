@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 20.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "g05com2900", "g05com2900\g05com2900.ssmssqlproj", "{140A06BD-8DF1-4917-AF56-738B5D470925}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Crear_Tablas", "Crear_Tablas\Crear_Tablas.ssmssqlproj", "{32B7E6BF-3DF3-4D5E-BF46-7C768F6899BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{140A06BD-8DF1-4917-AF56-738B5D470925}.Default|Default.ActiveCfg = Default
+		{0AC7A0BD-2DB9-488B-B46C-2072CDE9BD36}.Default|Default.ActiveCfg = Default
+		{32B7E6BF-3DF3-4D5E-BF46-7C768F6899BD}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCED87B0-EED9-428E-ABD3-2E5024B04622}
+	EndGlobalSection
+EndGlobal
