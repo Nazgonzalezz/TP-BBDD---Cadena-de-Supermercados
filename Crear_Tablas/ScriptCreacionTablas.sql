@@ -45,7 +45,7 @@ create table ddbba.Cliente (
     dni int not null unique,
     fecha_nacimiento date,
     direccion char(50),
-    eliminado bit not null,
+    eliminado bit not null default(0),
     constraint fk_tipo_cliente foreign key (id_tipo_de_cliente) references ddbba.TipoDeCliente(id),
     constraint fk_ciudad foreign key (id_ciudad) references ddbba.Ciudad(id),
     constraint fk_genero_cliente foreign key (id_genero) references ddbba.Genero(id)
@@ -68,7 +68,7 @@ create table ddbba.Empleado (
     cuil int not null unique,
     fecha_ingreso date not null,
     fecha_egreso date,
-    eliminado bit not null,
+    eliminado bit not null default(0),
     direccion char(50),
     constraint fk_genero_empleado foreign key (id_genero) references ddbba.Genero(id),
     constraint fk_sucursal foreign key (id_sucursal) references ddbba.Sucursal(id)
