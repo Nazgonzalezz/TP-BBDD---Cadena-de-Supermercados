@@ -5,7 +5,7 @@
 
 --42414940 Gonzalez Nazarena Araceli nazgonzalez@alumno.unlam.edu.ar
 
--- Romero Lucas Nicolas lucasnromero@alumno.unlam.edu.ar 
+--43780360 Romero Lucas Nicolas lucasnromero@alumno.unlam.edu.ar 
 
 --43242414 Romano Luciano Javier lromano@alumno.unlam.edu.ar 
 
@@ -94,9 +94,10 @@ go
 --Creamos la tabla para las sucursales del esquema sucursales
 create table sucursales.Sucursal (
     id int identity(1,1) primary key,
-    nombre char(20),
-    localidad char(20),
-    eliminado bit not null default(0)
+    nombre char(20) not null,
+    localidad char(20) not null,
+    eliminado bit not null default(0),
+    constraint unq_sucursal unique(nombre,localidad)
 );
 go
 
@@ -127,6 +128,7 @@ go
 --Creamos la tabla para las ventas del esquema ventas
 create table ventas.Venta (
     id int identity(1,1) primary key,
+    id_cliente int,
     id_empleado int,
     id_sucursal int,
     id_medio_de_pago int,
@@ -134,6 +136,7 @@ create table ventas.Venta (
     cantidad_de_productos int check (cantidad_de_productos >= 0),
     fecha date,
     hora time(0),
+    constraint fk_cliente foreign key (id_cliente) references clientes.Cliente(id),
     constraint fk_empleado foreign key (id_empleado) references sucursales.Empleado(id),
     constraint fk_sucursal_venta foreign key (id_sucursal) references sucursales.Sucursal(id),
     constraint fk_medio_de_pago foreign key (id_medio_de_pago) references ventas.MedioDePago(id)

@@ -1,4 +1,4 @@
---Para ejecutar este script primero debio haber ejecutado el scritp de clientes
+--Para ejecutar este script primero debio haber ejecutado el script de CreacionClientes
 
 --Nos posicionamos en la base datos
 use g05com2900
@@ -16,9 +16,10 @@ go
 --Creamos la tabla para las sucursales del esquema sucursales
 create table sucursales.Sucursal (
     id int identity(1,1) primary key,
-    nombre char(20),
-    localidad char(20),
-    eliminado bit not null default(0)
+    nombre char(20) not null,
+    localidad char(20) not null,
+    eliminado bit not null default(0),
+    constraint unq_sucursal unique(nombre,localidad)
 );
 go
 

@@ -1,4 +1,4 @@
---Para ejecutar este script primero debio haber ejecutado el scritp de sucursales, productos y clientes
+--Para ejecutar este script primero debio haber ejecutado el script de CreacionSucursales, CreacionProductos y CreacionClientes
 
 --Nos posicionamos en la base datos
 use g05com2900
@@ -60,6 +60,7 @@ create table ventas.Factura (
     constraint fk_tipo_de_factura foreign key (id_tipo_de_factura) references ventas.TipoDeFactura(id)
 );
 go
+
 --Creamos la tabla para las lineas de venta del esquema ventas
 create table ventas.LineaDeVenta (
     id int identity(1,1) primary key,

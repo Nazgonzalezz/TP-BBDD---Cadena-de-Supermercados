@@ -5,7 +5,7 @@
 
 --42414940 Gonzalez Nazarena Araceli nazgonzalez@alumno.unlam.edu.ar
 
---41714018 Romero Lucas Nicolas lucasnromero@alumno.unlam.edu.ar 
+--43780360 Romero Lucas Nicolas lucasnromero@alumno.unlam.edu.ar 
 
 --43242414 Romano Luciano Javier lromano@alumno.unlam.edu.ar 
 
