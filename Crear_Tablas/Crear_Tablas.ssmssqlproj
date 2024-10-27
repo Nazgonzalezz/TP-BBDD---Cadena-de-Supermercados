@@ -35,8 +35,8 @@
           <FullPath>01-ScriptCreacionBDSquemas.sql</FullPath>
         </FileNode>
         <FileNode Name="02-ScriptCreacionClientes.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-LQ6DRR5B:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-LQ6DRR5B</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>02-ScriptCreacionClientes.sql</FullPath>
         </FileNode>
