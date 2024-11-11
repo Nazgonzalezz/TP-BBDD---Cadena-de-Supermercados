@@ -62,14 +62,14 @@ go
 --Creamos la tabla para las ciudades del esquema clientes
 create table clientes.Ciudad (
     id int identity(1,1) primary key,
-    nombre char(20) not null unique
+    nombre varchar(60) not null unique
 );
 go
 
 --Creamos la tabla para el genero del esquema clientes
 create table clientes.Genero (
     id int identity(1,1) primary key,
-    tipo char(10) not null unique
+    tipo varchar(30) not null unique
 );
 go
 
@@ -79,11 +79,11 @@ create table clientes.Cliente (
     id_tipo_de_cliente int not null,
     id_ciudad int not null,
     id_genero int not null,
-    nombre char(20) not null,
-    apellido char(20) not null,
+    nombre varchar(50) not null,
+    apellido varchar(50) not null,
     dni int not null unique,
     fecha_nacimiento date,
-    direccion char(50),
+    direccion varchar(60),
     eliminado bit not null default(0),
     constraint fk_tipo_cliente foreign key (id_tipo_de_cliente) references clientes.TipoDeCliente(id),
     constraint fk_ciudad foreign key (id_ciudad) references clientes.Ciudad(id),
@@ -94,25 +94,30 @@ go
 --Creamos la tabla para las sucursales del esquema sucursales
 create table sucursales.Sucursal (
     id int identity(1,1) primary key,
-    nombre char(20) not null,
-    localidad char(20) not null,
+    ciudad varchar(60) not null,
+    localidad varchar(100) not null,
+	direccion varchar(100) not null,
+	horario varchar(100) not null,
+	telefono varchar(20) not null,
     eliminado bit not null default(0),
-    constraint unq_sucursal unique(nombre,localidad)
+    constraint unq_sucursal unique(ciudad,localidad)
 );
 go
 
 --Cramos la tabla para los empleados del esquema sucursales
 create table sucursales.Empleado (
-    id int identity(1,1) primary key,
+    legajo int primary key,
     id_genero int,
     id_sucursal int,
-    nombre char(20) not null,
-    apellido char(20) not null,
+    nombre varchar(50) not null,
+    apellido varchar(50) not null,
+	email_personal varchar(75) not null,
+	email_empresa varchar(75) not null,
+	cargo varchar(30) not null,
+	turno varchar(30) not null,
     cuil int not null unique,
-    fecha_ingreso date not null,
-    fecha_egreso date,
     eliminado bit not null default(0),
-    direccion char(50),
+    direccion varchar(100),
     constraint fk_genero_empleado foreign key (id_genero) references clientes.Genero(id),
     constraint fk_sucursal foreign key (id_sucursal) references sucursales.Sucursal(id)
 );
@@ -121,7 +126,7 @@ go
 --Creamos la tabla para los medios de pago del esquema ventas
 create table ventas.MedioDePago (
     id int identity(1,1) primary key,
-    descripcion char(30) not null unique
+    tipo varchar(40) not null unique
 );
 go
 
@@ -129,17 +134,18 @@ go
 create table ventas.Venta (
     id int identity(1,1) primary key,
     id_cliente int,
+	id_factura int,
     id_empleado int,
     id_sucursal int,
     id_medio_de_pago int,
     total decimal(10,2) check (total >=0),
-    cantidad_de_productos int check (cantidad_de_productos >= 0),
     fecha date,
     hora time(0),
     constraint fk_cliente foreign key (id_cliente) references clientes.Cliente(id),
-    constraint fk_empleado foreign key (id_empleado) references sucursales.Empleado(id),
+    constraint fk_empleado foreign key (id_empleado) references sucursales.Empleado(legajo),
     constraint fk_sucursal_venta foreign key (id_sucursal) references sucursales.Sucursal(id),
-    constraint fk_medio_de_pago foreign key (id_medio_de_pago) references ventas.MedioDePago(id)
+    constraint fk_medio_de_pago foreign key (id_medio_de_pago) references ventas.MedioDePago(id),
+	constraint fk_factura foreign key (id_factura) references ventas.Factura(id)
 );
 go
 
@@ -163,7 +169,7 @@ go
 --Creamos la tabla para las lineas de producto del esquema productos
 create table productos.LineaDeProducto (
     id int identity(1,1) primary key,
-    nombre char(30) not null unique
+    nombre varchar(100) not null unique
 );
 go
 
@@ -171,7 +177,7 @@ go
 create table productos.Producto (
     id int identity(1,1) primary key,
     id_linea_de_producto int,
-    nombre_producto char(30) not null,
+    nombre_producto varchar(100) not null,
     precio decimal(10,2) not null,
     constraint fk_linea_de_producto foreign key (id_linea_de_producto) references productos.LineaDeProducto(id)
 );
@@ -180,11 +186,11 @@ go
 --Creamos la tabla para los catalogos que vienen como archivos del esquema productos
 create table productos.Catalogo (
     id int primary key,
-    categoria char(30),
-    nombre char(50),
+    categoria varchar(100),
+    nombre varchar(100),
     precio decimal(8,2),
     precio_referencia decimal(10,2),
-    unidad_referencia char(2),
+    unidad_referencia varchar(10),
     fecha datetime
 );
 go
@@ -192,7 +198,7 @@ go
 --Creamos la tabla para los accesorios electronicos que vienen como archivos del esquema productos
 create table productos.AccesorioElectronico (
     id int identity(1,1) primary key,
-    producto char(50),
+    producto varchar(100),
     precio_unitario_dolares decimal(10,2)
 );
 go
@@ -200,10 +206,10 @@ go
 --Creamos la tabla para los productos importados que vienen como archivos del esquema productos
 create table productos.ProductoImportado (
     id_producto int primary key,
-    cantidad_por_unidad char(40),
-    nombre char(50),
-    categoria char(30),
-    proveedor char(50),
+    cantidad_por_unidad varchar(100),
+    nombre varchar(100),
+    categoria varchar(100),
+    proveedor varchar(100),
     precio_por_unidad decimal(10,2)
 );
 go
